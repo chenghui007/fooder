@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>在线点餐系统</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<style type="text/css">
+			html,body{background: #fff;}
+			.d-box{padding: 10px 15px;position: relative;font-size: 14px;}			
+			.d-box:before{content: '';position: absolute;left: 10px;bottom: 0px;right: 10px;border-top: 1px solid #DBDBDB;}
+			.d-box input[type="text"],.d-box input[type="password"]{border: 0;width: 100%;-webkit-tap-highlight-color: transparent;font-size: 14px;padding: 0;background: transparent;}
+			.d-box .d-input label{padding-right: 20px;}
+			.d-box .d-input input[type="radio"]{vertical-align: middle;margin-top:-3px}
+			.sub-box{text-align: center;padding: 30px 0;}
+			.sub-box input{width: 150px;height: 40px;display: inline-block;border: 0;background: #DDDDDD;color: #999999;}
+		</style>
+		<script src="js/jquery.min.js"></script>
+		<script>
+			function resUser(){
+				if($('#userName').val() == null || $('#userName').val() == ''){
+					alert("请输入账号")
+					return;
+				}
+				if($('#password').val() == null || $('#password').val() == ''){
+					alert("请输入密码")
+					return;
+				}
+				if($('#age').val() == null || $('#age').val() == ''){
+					alert("请输入年龄")
+					return;
+				}
+				var val=$('input:radio[name="sex"]:checked').val();
+				if(val == null || val == ''){
+					alert("请输入年龄")
+					return;
+				}
+				var param={};
+				param.userName=$('#userName').val();
+				param.password=$('#password').val();
+				param.sex=val;
+				param.age=$('#age').val();
+				$.ajax({
+					type: "POST",
+					url: "http://localhost/user/userRes.do",
+					data: param,
+					success: function(data){
+						if(data.code!='0000'){
+							alert(data.desc);
+						}else{
+							location.href='demo.html';
+						}
+					}
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<div class="main">
+			<form action="" method="post">
+				<div class="d-box">
+					<div class="d-title">注册账号:</div>
+					<div class="d-input">
+						<input type="text" name="" id="userName" value="" placeholder="请填写注册账号" />
+					</div>
+				</div>
+				<div class="d-box">
+					<div class="d-title">密码:</div>
+					<div class="d-input">
+						<input type="password" name="" id="password" value="" placeholder="请填写注册密码" />
+					</div>
+				</div>
+				<div class="d-box">
+					<div class="d-title">年龄:</div>
+					<div class="d-input">
+						<input type="text" name="" id="age" value="" placeholder="年龄" />
+					</div>
+				</div>
+				<div class="d-box">
+					<div class="d-title" style="float: left;padding-right:20px">性别</div>
+					<div class="d-input">
+						<label><input name="sex" type="radio" value="1" />男 </label>
+						<label><input name="sex" type="radio" value="2" />女 </label>
+					</div>
+				</div>
+				<div class="login-box">
+					<input type="button" onclick="resUser()" value="确定"/>
+				</div>			
+			</form>
+		</div>
+	</body>
+</html>

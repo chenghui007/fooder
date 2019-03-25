@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.food.dao.TblOrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.food.entity.TblOrderDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="disher_name" property="disherName" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="total_money" property="totalMoney" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="disher_id" property="disherId" jdbcType="INTEGER" />
+    <result column="disher_type" property="disherType" jdbcType="CHAR" />
+    <result column="disher_type_name" property="disherTypeName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, disher_name, money, number, total_money, create_time, order_no, disher_id, disher_type, 
+    disher_type_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.food.entity.TblOrderDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart>=0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.food.entity.TblOrderDetailExample" >
+    delete from tbl_order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.food.entity.TblOrderDetail" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tbl_order_detail (disher_name, money, number, 
+      total_money, create_time, order_no, 
+      disher_id, disher_type, disher_type_name
+      )
+    values (#{disherName,jdbcType=VARCHAR}, #{money,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, 
+      #{totalMoney,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{orderNo,jdbcType=VARCHAR}, 
+      #{disherId,jdbcType=INTEGER}, #{disherType,jdbcType=CHAR}, #{disherTypeName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.food.entity.TblOrderDetail" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tbl_order_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="disherName != null" >
+        disher_name,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="totalMoney != null" >
+        total_money,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="disherId != null" >
+        disher_id,
+      </if>
+      <if test="disherType != null" >
+        disher_type,
+      </if>
+      <if test="disherTypeName != null" >
+        disher_type_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="disherName != null" >
+        #{disherName,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="totalMoney != null" >
+        #{totalMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="disherId != null" >
+        #{disherId,jdbcType=INTEGER},
+      </if>
+      <if test="disherType != null" >
+        #{disherType,jdbcType=CHAR},
+      </if>
+      <if test="disherTypeName != null" >
+        #{disherTypeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.food.entity.TblOrderDetailExample" resultType="java.lang.Integer" >
+    select count(*) from tbl_order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_order_detail
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.disherName != null" >
+        disher_name = #{record.disherName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money,jdbcType=VARCHAR},
+      </if>
+      <if test="record.number != null" >
+        number = #{record.number,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalMoney != null" >
+        total_money = #{record.totalMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderNo != null" >
+        order_no = #{record.orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.disherId != null" >
+        disher_id = #{record.disherId,jdbcType=INTEGER},
+      </if>
+      <if test="record.disherType != null" >
+        disher_type = #{record.disherType,jdbcType=CHAR},
+      </if>
+      <if test="record.disherTypeName != null" >
+        disher_type_name = #{record.disherTypeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_order_detail
+    set id = #{record.id,jdbcType=INTEGER},
+      disher_name = #{record.disherName,jdbcType=VARCHAR},
+      money = #{record.money,jdbcType=VARCHAR},
+      number = #{record.number,jdbcType=VARCHAR},
+      total_money = #{record.totalMoney,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      order_no = #{record.orderNo,jdbcType=VARCHAR},
+      disher_id = #{record.disherId,jdbcType=INTEGER},
+      disher_type = #{record.disherType,jdbcType=CHAR},
+      disher_type_name = #{record.disherTypeName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.food.entity.TblOrderDetail" >
+    update tbl_order_detail
+    <set >
+      <if test="disherName != null" >
+        disher_name = #{disherName,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="totalMoney != null" >
+        total_money = #{totalMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="disherId != null" >
+        disher_id = #{disherId,jdbcType=INTEGER},
+      </if>
+      <if test="disherType != null" >
+        disher_type = #{disherType,jdbcType=CHAR},
+      </if>
+      <if test="disherTypeName != null" >
+        disher_type_name = #{disherTypeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.food.entity.TblOrderDetail" >
+    update tbl_order_detail
+    set disher_name = #{disherName,jdbcType=VARCHAR},
+      money = #{money,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      total_money = #{totalMoney,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      disher_id = #{disherId,jdbcType=INTEGER},
+      disher_type = #{disherType,jdbcType=CHAR},
+      disher_type_name = #{disherTypeName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

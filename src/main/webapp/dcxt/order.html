@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>在线点餐系统</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<style type="text/css">
+			html,body{width: 100%;height: 100%;overflow: hidden;}
+			.c-box{height: 100%;overflow-x: hidden;overflow-y: auto;}
+			.d-name{display: flex;padding: 10px;flex-direction: column;}
+			.d-name .d-title{font-weight: bold;text-align: center;}
+			.d-img img{width: 33px;height: 33px;margin-right: 10px;border-radius: 50%;}
+			.menu{padding: 10px;display: flex;font-size: 14px;background: #EEEEEE;position: relative;}
+			.menu:before{ content: '';position: absolute;left: 10px;bottom: 0px;right: 10px;border-top: 1px solid #DBDBDB;}
+			.menu .left-center{display: flex;flex-direction: column;padding-left: 10px;color: #DBDBDB;flex: 1;}
+			.menu .left-center span:first-child{color: #000;}
+			.packing,.delivery,.packet,.voucher{display: flex;padding: 10px;font-size: 16px;}
+			.all-price{text-align: right;padding: 8px 10px;}
+		</style>
+	</head>
+	<body>
+		<div class="c-box">
+			<div class="d-name">
+				<div class="d-title">在线点餐系统</div>
+				<div class="d-img"><img src="img/logo.jpg"/ style="vertical-align: middle;"><span style="font-size: 14px;">你看到你看看你看</span></div>
+			</div>
+			<div class="menu">
+				<div class="left"><img src="img/pic.png"/ width="55" height="55"></div>
+				<div class="left-center">
+					<span>小锅米线</span>
+					<span>常规</span>
+					<span>数量</span>
+				</div>
+				<div class="right">￥44</div>
+			</div>
+			<div class="menu">
+				<div class="left"><img src="img/pic.png"/ width="55" height="55"></div>
+				<div class="left-center">
+					<span>小锅米线</span>
+					<span>常规</span>
+					<span>数量</span>
+				</div>
+				<div class="right">￥44</div>
+			</div>
+			<div class="menu">
+				<div class="left"><img src="img/pic.png"/ width="55" height="55"></div>
+				<div class="left-center">
+					<span>小锅米线</span>
+					<span>常规</span>
+					<span>数量</span>
+				</div>
+				<div class="right">￥44</div>
+			</div>
+			<div class="menu">
+				<div class="left"><img src="img/pic.png"/ width="55" height="55"></div>
+				<div class="left-center">
+					<span>小锅米线</span>
+					<span>常规</span>
+					<span>数量</span>
+				</div>
+				<div class="right">￥44</div>
+			</div>
+			<div class="menu">
+				<div class="left"><img src="img/pic.png"/ width="55" height="55"></div>
+				<div class="left-center">
+					<span>小锅米线</span>
+					<span>常规</span>
+					<span>数量</span>
+				</div>
+				<div class="right">￥44</div>
+			</div>
+			<div class="menu">
+				<div class="left"><img src="img/pic.png"/ width="55" height="55"></div>
+				<div class="left-center">
+					<span>小锅米线</span>
+					<span>常规</span>
+					<span>数量</span>
+				</div>
+				<div class="right">￥44</div>
+			</div>
+			<div class="delivery-box">
+				<div class="packing">
+					<div style="flex: 1;">包装费</div>
+					<div>￥4</div>
+				</div>
+				<div class="delivery">
+					<div style="flex: 1;">配送费</div>
+					<div>￥4</div>
+				</div>
+			</div>
+			<div class="packet-box">
+				<div class="packet">
+					<div style="flex: 1;">美团红包</div>
+					<div>暂无可用</div>
+				</div>
+				<div class="voucher">
+					<div style="flex: 1;">商家代金卷</div>
+					<div>暂无可用</div>
+				</div>
+			</div>
+			<div class="all-price">
+				小计<span style="color: #F03C03;font-weight: bold;">￥54</span>
+			</div>
+		</div>
+	</body>
+</html>
