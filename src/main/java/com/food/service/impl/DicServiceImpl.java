@@ -42,7 +42,9 @@ public class DicServiceImpl implements DicService {
 
     @Override
     public List<TblSysDic> queryDish(String dishtype) {
-        return tblSysDicMapper.selectByExample(null);
+        TblSysDicExample example=new TblSysDicExample();
+        example.createCriteria().andTypeEqualTo(Contants.dish_type);
+        return tblSysDicMapper.selectByExample(example);
     }
 
 
