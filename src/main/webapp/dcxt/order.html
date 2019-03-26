@@ -108,7 +108,7 @@
 			<div class="delivery-box">
 				<div class="packing">
 					<div style="flex: 1;">预计等待时间</div>
-					<div>￥4</div>
+					<div class="waitTime"></div>
 				</div>
 				<!-- <div class="delivery">
 					<div style="flex: 1;">配送费</div>
@@ -144,9 +144,9 @@
 					},
 					success: function(data) {
 						console.log(data);
-						copy(data);
-						allPriceCount(data);
-						
+						copy(data.details);
+						allPriceCount(data.details);
+						$(".waitTime").html(data.waittime);
 					}
 				});
 			};
@@ -168,7 +168,6 @@
 					str += '</div>'
 					str += '</div>'
 					$(".menu-box").append(str);
-					allPrice += parseInt(item.totalMoney);
 				});				
 			}
 			
