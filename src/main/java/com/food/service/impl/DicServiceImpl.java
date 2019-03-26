@@ -1,14 +1,18 @@
 package com.food.service.impl;
 
+import com.food.dao.TblDishesInfoMapper;
 import com.food.dao.TblSysDicMapper;
-import com.food.entity.TblSysDic;
-import com.food.entity.TblSysDicExample;
+import com.food.entity.*;
 import com.food.service.DicService;
 import com.food.util.Contants;
+import com.food.util.SysDicUtils;
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by chenghui on 2019/3/23.
@@ -20,11 +24,26 @@ public class DicServiceImpl implements DicService {
     @Autowired
     private TblSysDicMapper tblSysDicMapper;
 
+    @Autowired
+    private TblDishesInfoMapper tblDishesInfoMapper;
 
-    public List<TblSysDic> queryDic() {
-        return queryDicByType(Contants.dish_type);
+
+    public List<Map<String, Object>> queryDic() {
+        List<Map<String,Object>>  list=new ArrayList<>();
+        List<TblSysDic> infos =queryDicByType(Contants.dish_type);
+        for (TblSysDic dic:infos) {
+            Map<String,Object>  item=new HashedMap();
+            item.put("disher",dic);
+            item.put("dishlist",queryDish(dic.getParam()));
+            list.add(item);
+        }
+        return list;
     }
 
+    @Override
+    public List<TblSysDic> queryDish(String dishtype) {
+        return tblSysDicMapper.selectByExample(null);
+    }
 
 
     private  List<TblSysDic>  queryDicByType(String type){

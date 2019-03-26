@@ -1,5 +1,6 @@
 package com.food.controller;
 
+import com.food.entity.TblDishesInfo;
 import com.food.entity.TblSysDic;
 import com.food.service.DicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by chenghui on 2019/3/23.
@@ -23,8 +25,15 @@ public class DicController {
 
     @RequestMapping("/dishertype")
     @ResponseBody
-    public List<TblSysDic> queryDic(){
+    public List<Map<String, Object>> queryDic(){
         return dicService.queryDic();
+    }
+
+
+    @RequestMapping("/querydishtype")
+    @ResponseBody
+    public List<TblSysDic> queryDish(String dishtype){
+        return dicService.queryDish(dishtype);
     }
 }
 

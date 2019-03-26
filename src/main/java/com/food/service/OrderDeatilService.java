@@ -1,8 +1,5 @@
 package com.food.service;
 
-import com.food.entity.TblOrderDetail;
-
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,7 +8,7 @@ import java.util.Map;
 public interface OrderDeatilService {
     void queryOrderInfo(Map<String, String> result);
 
-    List<TblOrderDetail> queryOrderDeatil(String orderNo);
+    Map<String, Object> queryOrderDeatil(String orderNo);
 
     void endOrder(Map<String, String> result);
 }

@@ -2,17 +2,14 @@ package com.food.service.impl;
 
 import com.food.dao.TblSysMenuInfoMapper;
 import com.food.dao.TblSysUserMapper;
-import com.food.entity.TblSysMenuInfo;
-import com.food.entity.TblSysMenuInfoExample;
-import com.food.entity.TblSysUser;
-import com.food.entity.TblSysUserExample;
+import com.food.entity.*;
 import com.food.service.LoginService;
+import com.food.util.Contants;
+import com.food.util.SysDicUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by chenghui on 2019/3/23.
@@ -28,7 +25,7 @@ public class LoginServiceImpl implements LoginService {
     private TblSysMenuInfoMapper tblSysMenuInfoMapper;
 
 
-    public Map<String, String> loginSys(String username, String password) {
+    public Map<String, String> loginSys(String username, String password){
         Map<String, String>  map=new HashMap<String, String>();
         TblSysUserExample example=new TblSysUserExample();
         example.createCriteria().andLoginUserEqualTo(username);
@@ -45,10 +42,20 @@ public class LoginServiceImpl implements LoginService {
         }
         map.put("code","0000");
         map.put("desc","登录成功");
+        map.put("userid", String.valueOf(list.get(0).getId()));
         return map;
     }
 
-    public List<TblSysMenuInfo> queryMenu() {
-        return tblSysMenuInfoMapper.selectByExample(null);
+    public List<TblSysMenuInfo> queryMenu(String userid) {
+        TblSysUser infos=tblSysUserMapper.selectByPrimaryKey(Integer.valueOf(userid));
+        String qx=SysDicUtils.getValue(Contants.role_menu,infos.getRole());
+        TblSysMenuInfoExample example=new TblSysMenuInfoExample();
+        String[] arr=qx.split(",");
+        List<Integer> ql=new ArrayList<>();
+        for (String i:arr) {
+            ql.add(Integer.valueOf(i));
+        }
+        example.createCriteria().andIdIn(ql);
+        return tblSysMenuInfoMapper.selectByExample(example);
     }
 }

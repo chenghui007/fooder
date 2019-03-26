@@ -11,5 +11,5 @@ import java.util.Map;
 public interface LoginService {
     Map<String,String> loginSys(String username, String password);
 
-    List<TblSysMenuInfo> queryMenu();
+    List<TblSysMenuInfo> queryMenu(String userid);
 }

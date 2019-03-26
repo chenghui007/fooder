@@ -22,11 +22,11 @@
 <link rel="stylesheet" href="/login/component.css" />
 <style type="text/css">
     html, body, div,p{margin:0;padding:0;font-weight:400;}
-    .login-content{background:url('/img/login-background_dipper.jpg') no-repeat;width:100%;height:100%;}
+    .login-content{background:url('/dcxt/img/login-background_dipper.jpg') no-repeat;width:100%;height:100%;}
     .login-header,.login-footer{width:100%;height:50px;color:#FFF;font-size:12px;line-height:50px;}
-    .login-header .logo-img{display:block;float:left;height:50px;width:50px;background:url('img/user-lock.png') no-repeat scroll 0px -5px;}
+    .login-header .logo-img{display:block;float:left;height:50px;width:50px;background:url('/dcxt/img/user-lock.png') no-repeat scroll 0px -5px;}
     .login-header .logo-title{display:block;float:left;height:50px;font-size:20px;font-weight:bold;}
-    .login-box{position:fixed;top:50%;left:50%;-webkit-transform:translate3d(-50%,-50%,0);transform:translate3d(-50%,-50%,0);width:500px;height:350px;background:url('/img/login-box.png') no-repeat;padding:35px 65px 35px 65px;font-size:14px}
+    .login-box{position:fixed;top:50%;left:50%;-webkit-transform:translate3d(-50%,-50%,0);transform:translate3d(-50%,-50%,0);width:500px;height:350px;background:url('/dcxt/img/login-box.png') no-repeat;padding:35px 65px 35px 65px;font-size:14px}
     :root .login-box{top:0px\0;margin:260px 0px 0px -250px\0;}
 
     .userInfo{width:370px;height:70px;overflow:hidden;margin-bottom:0px;}
@@ -36,8 +36,8 @@
     .userInfo .checkCode{width:160px;}
     .userInfo .checkCodeBtnDiv{padding:0px;width:70px;float:left;margin-left:15px;}
     .userInfo .checkCodeBtn{width:50px;}
-    .userInfo .userName{background:url('/img/user-lock.png') no-repeat scroll 0px -5px;}
-    .userInfo .userPwd{background:url('/img/user-lock.png') no-repeat scroll 0px -70px;}
+    .userInfo .userName{background:url('/dcxt/img/user-lock.png') no-repeat scroll 0px -5px;}
+    .userInfo .userPwd{background:url('/dcxt/img/user-lock.png') no-repeat scroll 0px -70px;}
     .userInfo .code-text{float:left;display:inline-block;width:60px;height:40px;color:#fff;line-height:55px;}
     .userInfo .code{background:none;border:1px solid #fff;color:#fff;width:80px;height:32px;line-height:34px;text-align:center;display:block;float:right;letter-spacing:4px;font-size:14px;font-family:Arial;margin-top:8px;border-radius:20px;cursor:pointer;}
 
@@ -60,7 +60,7 @@
                 <div class="form-group userInfo">
                     <label class="col-lg-3 colName userName"></label>
                     <div class="col-lg-9 clearfix" style="width:310px;padding:0px;position:relative;">
-                        <input type="text" name="userAccount" value='' id="user_info"
+                        <input type="text" name="username"  id="user_info"
                                data-bv-message="The username is not valid"
 
                                data-bv-notempty="true"
@@ -118,10 +118,11 @@
                     return true;
                 },
                 success: function (data) {
-                    if(!data.code == '00000'){
-                        $.messager.alert('警告',data.desc);
+                    var info=JSON.parse(data);
+                    if(info.code != '0000'){
+                        $.messager.alert('警告',info.desc);
                     }else{
-                        location.href="/login/main.do"
+                        location.href="/login/main.do?userid="+info.userid
                     }
                 }
             });

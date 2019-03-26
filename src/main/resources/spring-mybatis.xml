@@ -63,7 +63,7 @@
 		<!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
 		<property name="mapperLocations"  >
 			<array>
-				<value>classpath:com/food/mapping/*.xml</value>
+				<value>classpath:mapping/*.xml</value>
 			</array>
 		</property>
 	</bean>

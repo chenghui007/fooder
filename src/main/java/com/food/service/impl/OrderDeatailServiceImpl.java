@@ -3,15 +3,14 @@ package com.food.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.food.dao.TblOrderDetailMapper;
 import com.food.dao.TblOrderInfoMapper;
-import com.food.entity.TblOrderDetail;
 import com.food.entity.TblOrderDetailExample;
 import com.food.entity.TblOrderInfo;
 import com.food.entity.TblOrderInfoExample;
 import com.food.service.OrderDeatilService;
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -53,10 +52,15 @@ public class OrderDeatailServiceImpl implements OrderDeatilService {
     }
 
     @Override
-    public List<TblOrderDetail> queryOrderDeatil(String orderNo) {
+    public Map<String, Object> queryOrderDeatil(String orderNo) {
+        Map<String,Object>  map=new HashedMap();
+        TblOrderInfoExample tblOrderInfoExample=new TblOrderInfoExample();
+        tblOrderInfoExample.createCriteria().andOrderNoEqualTo(orderNo);
+        map.put("waittime",tblOrderInfoMapper.selectByExample(tblOrderInfoExample).get(0).getWaitTime());
         TblOrderDetailExample detailExample=new TblOrderDetailExample();
         detailExample.createCriteria().andOrderNoEqualTo(orderNo);
-        return tblOrderDetailMapper.selectByExample(detailExample);
+        map.put("details",tblOrderDetailMapper.selectByExample(detailExample));
+        return map;
     }
 
     @Override

@@ -7,4 +7,7 @@ public class Contants {
 
 
     public static final  String dish_type="dishier_type";
+
+
+    public static final  String role_menu="role_menu";
 }

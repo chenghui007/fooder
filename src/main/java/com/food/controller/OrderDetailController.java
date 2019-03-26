@@ -1,6 +1,5 @@
 package com.food.controller;
 
-import com.food.entity.TblOrderDetail;
 import com.food.service.OrderDeatilService;
 import com.food.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -46,7 +44,7 @@ public class OrderDetailController {
      */
     @RequestMapping("/queryOrderdetail")
     @ResponseBody
-    public List<TblOrderDetail> queryOrderDeatl(String orderNo){
+    public Map<String, Object> queryOrderDeatl(String orderNo){
         if(StringUtils.isEmpty(orderNo)){
             return null;
         }

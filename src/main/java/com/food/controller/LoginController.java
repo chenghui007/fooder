@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,15 +25,17 @@ public class LoginController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public Map<String, String> loginSys(String username, String password) {
+    public Map<String, String> loginSys(String username, String password, HttpServletRequest request) {
         Map<String, String>  result=new HashMap<String, String>();
         if (StringUtils.isEmpty(username)) {
             result.put("code","0001");
             result.put("desc","请输入用户名");
+            return result;
         }
         if (StringUtils.isEmpty(password)) {
             result.put("code","0001");
             result.put("desc","请输入密码");
+            return result;
         }
         result=loginService.loginSys(username,password);
         return result;
@@ -43,7 +46,7 @@ public class LoginController {
     }
     @RequestMapping("/tree")
     @ResponseBody
-    public List<TblSysMenuInfo> queryMenu(){
-        return loginService.queryMenu();
+    public List<TblSysMenuInfo> queryMenu(String userid){
+        return loginService.queryMenu(userid);
     }
 }

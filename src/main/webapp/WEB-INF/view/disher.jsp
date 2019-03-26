@@ -56,7 +56,7 @@
                 <td>菜品类型:</td>
                 <td>
                     <input id="disherType" class="easyui-combobox" name="disherType"
-                           data-options="valueField:'param',textField:'paramValue',url:'/dic/dishertype.do',editable:true"/>
+                           data-options="valueField:'param',textField:'paramValue',url:'/dic/querydishtype.do',editable:true"/>
                 </td>
             </tr>
             <tr>

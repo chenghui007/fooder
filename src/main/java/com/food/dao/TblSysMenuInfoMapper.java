@@ -27,4 +27,5 @@ public interface TblSysMenuInfoMapper {
     int updateByPrimaryKeySelective(TblSysMenuInfo record);
 
     int updateByPrimaryKey(TblSysMenuInfo record);
+
 }
