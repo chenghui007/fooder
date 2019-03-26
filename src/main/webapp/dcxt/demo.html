@@ -58,19 +58,7 @@ html,body{width: 100%;height: 100%;overflow: hidden;position: relative;}
 <div class="main">
 	<div class="left-menu">
 		<ul>  
-           <li class="active">营养套餐<span class="num-price"></span></li>  
-           <li>酒水饮料</li>  
-           <li>酒水饮料</li>  
-           <li>酒水饮料</li> 
-		   <li>酒水饮料</li>  
-           <li>酒水饮料</li>  
-           <li>酒水饮料</li> 
-		   <li>酒水饮料</li>  
-           <li>酒水饮料</li>  
-           <li>酒水饮料</li> 
-		   <li>酒水饮料</li>  
-           <li>酒水饮料</li>  
-           <li>酒水饮料</li>  
+          
         </ul> 
 	</div>
 	<div class="con">
@@ -712,6 +700,23 @@ $(function () {
 		$(".con>div").hide();
 		$(".con>div:eq("+n+")").show();	
 	});
+	
+	tabMenu();
+	function tabMenu(){
+		 $.ajax({
+             type: "post",
+             url: "http://39.104.93.155/fooder/dic/dishertype.do",
+             data: {
+				 
+			 },
+             success: function(data){
+				 console.log(data);
+				 $.each(data,function(index,item){
+					$(".left-menu ul").append("<li>"+item.paramValue+"</li>");
+				 });
+             }         
+         });
+	}
 });  
 </script>
 
