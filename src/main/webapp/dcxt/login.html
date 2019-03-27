@@ -39,7 +39,7 @@
 				param.password=$('#login_password').val();
 				$.ajax({
 					type: "POST",
-					url: "http://localhost/user/userlogin.do",
+					url: "http://39.104.83.232:8080/user/userlogin.do",
 					data: param,
 					success: function(data){
 						if(data.code!='0000'){

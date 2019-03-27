@@ -42,7 +42,7 @@
 				param.age=$('#age').val();
 				$.ajax({
 					type: "POST",
-					url: "http://localhost/user/userRes.do",
+					url: "http://39.104.83.232:8080/user/userRes.do",
 					data: param,
 					success: function(data){
 						if(data.code!='0000'){
