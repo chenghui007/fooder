@@ -140,7 +140,7 @@
 					type: "post",
 					url: "http://39.104.93.155/fooder/orderdetail/queryOrderdetail.do",
 					data: {
-						"orderNo": 12312
+						"orderNo": getQueryString("orderNum")
 					},
 					success: function(data) {
 						console.log(data);
@@ -177,7 +177,14 @@
 					allPrice += parseInt(item.totalMoney);
 				});
 				$(".all-price").append('小计<span style="color: #F03C03;font-weight: bold;">'+ allPrice +'</span>');
-			}
+			}			
+			
+			function getQueryString(name) { 
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+				var r = window.location.search.substr(1).match(reg); 
+				if (r != null) return unescape(r[2]); 
+				return null; 
+			} 
 		})
 	</script>
 </html>
